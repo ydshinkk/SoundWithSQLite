@@ -59,16 +59,98 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_save.setOnClickListener(this);
         btn_select.setOnClickListener(this);
         btn_dec.setOnClickListener(this);
-        btn_decPlay.setOnClickListener(this);
 
         dbHelper = new DBHelper(MainActivity.this, 1);
 
-        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.sound1);
+        MediaPlayer mediaPlayer1 = MediaPlayer.create(this, R.raw.sound1);
+        MediaPlayer mediaPlayer2 = MediaPlayer.create(this, R.raw.sound2);
+        MediaPlayer mediaPlayer3 = MediaPlayer.create(this, R.raw.sound3);
+        MediaPlayer mediaPlayer4 = MediaPlayer.create(this, R.raw.sound4);
+        MediaPlayer mediaPlayer5 = MediaPlayer.create(this, R.raw.sound5);
+        MediaPlayer mediaPlayer6 = MediaPlayer.create(this, R.raw.sound6);
+        MediaPlayer mediaPlayer7 = MediaPlayer.create(this, R.raw.sound7);
+        MediaPlayer mediaPlayer8 = MediaPlayer.create(this, R.raw.sound8);
 
         btn_sound1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer.start();
+                mediaPlayer1.start();
+            }
+        });
+        btn_sound2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mediaPlayer2.start();
+            }
+        });
+        btn_sound3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mediaPlayer3.start();
+            }
+        });
+        btn_sound4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mediaPlayer4.start();
+            }
+        });
+        btn_sound5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mediaPlayer5.start();
+            }
+        });
+        btn_sound6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mediaPlayer6.start();
+            }
+        });
+        btn_sound7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mediaPlayer7.start();
+            }
+        });
+        btn_sound8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mediaPlayer8.start();
+            }
+        });
+
+        btn_decPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String decNum = (String) dbHelper.getResultDec();
+                String[] array = decNum.split("-");
+                for(int i=0;i<array.length;i++) {
+                    /*viewResult.setText(array[i]);*/
+                    if(array[i].equals(1)){
+                        mediaPlayer1.start();
+                    }
+                    else if(array[i].equals(2)){
+                        mediaPlayer2.start();
+                    }
+                    else if(array[i].equals(3)){
+                        mediaPlayer3.start();
+                    }
+                    else if(array[i].equals(4)){
+                        mediaPlayer4.start();
+                    }
+                    else if(array[i].equals(5)){
+                        mediaPlayer5.start();
+                    }
+                    else if(array[i].equals(6)){
+                        mediaPlayer6.start();
+                    }
+                    else if(array[i].equals(7)){
+                        mediaPlayer7.start();
+                    }
+                    else
+                        mediaPlayer8.start();
+                }
             }
         });
 
@@ -86,9 +168,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_dec:
                 viewResult.setText(dbHelper.getResultDec());
                 break;
-            case R.id.btn_decPlay:
+            /*case R.id.btn_decPlay:
 
-                String DecNum = dbHelper.getResultDec();
+                String DecNum = dbHelper.getResultDec();*/
 
 
 
