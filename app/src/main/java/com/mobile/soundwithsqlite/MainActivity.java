@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
@@ -29,7 +31,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     StringTokenizer st;
     StringBuilder sb;
     String[] printSound;
-    MediaPlayer mediaPlayer ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +52,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         et_date = (EditText) findViewById(R.id.et_date);
         et_num = (EditText) findViewById(R.id.et_num);
         viewResult = (TextView) findViewById(R.id.ViewResult);
-
         btn_dec = (Button) findViewById(R.id.btn_dec);
         btn_decPlay = (Button) findViewById(R.id.btn_decPlay);
 
@@ -59,8 +59,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_save.setOnClickListener(this);
         btn_select.setOnClickListener(this);
         btn_dec.setOnClickListener(this);
+        btn_decPlay.setOnClickListener(this);
 
         dbHelper = new DBHelper(MainActivity.this, 1);
+
+        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.sound1);
+
+        btn_sound1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mediaPlayer.start();
+            }
+        });
+
     }
 
     @Override
@@ -76,21 +87,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 viewResult.setText(dbHelper.getResultDec());
                 break;
             case R.id.btn_decPlay:
-                String DecNum = (String) dbHelper.getResultDec();
+
+                String DecNum = dbHelper.getResultDec();
+
+
+
+
+            /*    String DecNum = (String) dbHelper.getResultDec();
 
                 sb = new StringBuilder();
                 st = new StringTokenizer(DecNum,"-");
 
                 printSound = new String[st.countTokens()];
+
                     int i = 0;
+
+            String[] result = printSound[i];
+            for (int x=0; x<result.length; x++)
+                System.out.println(result[x]);
 
                     //뭉텅이로 붙여진 거 하나씩 떼는 반복문
                     while(st.hasMoreTokens()){
                         printSound[i] = st.nextToken();
                         String tokenI = (printSound[i]);
+
                         i++;
 
-                        viewResult.setText(tokenI);
+                        viewResult.setText(printSound[i]);
 
                         //찾는 음계가 있는지 검색하는 반복문, 인덱스를 얻었으므로 그 인덱스에 걸리는 애들만 찾으면 됨.
                         for(i=0; i<tokenI.length(); i++){
@@ -124,11 +147,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             }
                             else
                                 mediaPlayer = MediaPlayer.create(this, R.raw.sound8);
-                            mediaPlayer.start();
+                                mediaPlayer.start();
                         }
 
                     }
-                break;
+                break;*/
         }
     }
 
