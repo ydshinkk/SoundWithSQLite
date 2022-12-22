@@ -12,6 +12,9 @@ import android.widget.TextView;
 import org.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.StringTokenizer;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -125,9 +128,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onClick(View v) {
                 String decNum = (String) dbHelper.getResultDec();
                 String[] array = decNum.split("-");
-                for(int i=0;i<array.length;i++) {
-                    /*viewResult.setText(array[i]);*/
-                    if(array[i].equals(1)){
+                ArrayList<String> arrData = new ArrayList<String>();
+                Collections.addAll(arrData, array);
+                for(int i=0;i<arrData.size();i++) {
+                    viewResult.setText(arrData.get(i));
+                    /*if(arrData.get(0).equals(1)){
                         mediaPlayer1.start();
                     }
                     else if(array[i].equals(2)){
@@ -149,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         mediaPlayer7.start();
                     }
                     else
-                        mediaPlayer8.start();
+                        mediaPlayer8.start();*/
                 }
             }
         });
