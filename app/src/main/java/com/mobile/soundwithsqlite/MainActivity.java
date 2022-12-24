@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
+import android.provider.SyncStateContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +18,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -128,11 +132,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onClick(View v) {
                 String decNum = (String) dbHelper.getResultDec();
                 String[] array = decNum.split("-");
+                for(int i=0; i<array.length; i++){
+                    viewResult.setText(array[i]);
+                    /*private Handler handler = new Handler();*/
+                    new Timer().schedule(new TimerTask() {
+                        public void run() {
+                            // UI 및 로직
+                        }
+                    }, 1000); // 1초후 실행
+
+                    if (array[i].equals("1")){ mediaPlayer1.start(); }
+                    else if (array[i].equals("2")){ mediaPlayer2.start(); }
+                    else if (array[i].equals("3")){ mediaPlayer3.start(); }
+                    else if (array[i].equals("4")){ mediaPlayer4.start(); }
+                    else if (array[i].equals("5")){ mediaPlayer5.start(); }
+                    else if (array[i].equals("6")){ mediaPlayer6.start(); }
+                    else if (array[i].equals("7")){ mediaPlayer7.start(); }
+                    else { mediaPlayer8.start(); }
+                }
+
+                /*String[] array = decNum.split("-");
                 ArrayList<String> arrData = new ArrayList<String>();
                 Collections.addAll(arrData, array);
                 for(int i=0;i<arrData.size();i++) {
-                    viewResult.setText(arrData.get(i));
-                    /*if(arrData.get(0).equals(1)){
+                    viewResult.setText(arrData.indexOf(i));
+                    if(arrData.get(0).equals(1)){
                         mediaPlayer1.start();
                     }
                     else if(array[i].equals(2)){
@@ -155,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                     else
                         mediaPlayer8.start();*/
-                }
+                /*}*/
             }
         });
 
@@ -176,9 +200,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             /*case R.id.btn_decPlay:
 
                 String DecNum = dbHelper.getResultDec();*/
-
-
-
 
             /*    String DecNum = (String) dbHelper.getResultDec();
 
